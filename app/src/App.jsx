@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 import './App.css'
+import { Typography } from "@mui/material"
 import DisplayOutput from "./components/DisplayOutput"
 import FormComponent from "./components/FormComponent"
 
@@ -26,8 +27,10 @@ function App() {
 
   return (
     <>
-      <FormComponent onSendMessage={handleSendMessage} />
+      <Typography variant="h3">Learn a language for business </Typography>
+      <Typography variant="body1">What are your language goals, current skill level and context you want to learn?</Typography>
       <DisplayOutput response={response} />
+      <FormComponent onSendMessage={handleSendMessage} />
     </>
   )
 }

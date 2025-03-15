@@ -1,13 +1,18 @@
 from flask import Flask, request, jsonify
-import openai
+from openai import OpenAI
 import os
 from dotenv import load_dotenv
+from flask_cors import CORS
 
 load_dotenv()
 
 app = Flask(__name__)
 
-openai.api_key = os.getenv('OPENAI_API_KEY')
+CORS(app)
+
+client = OpenAI(
+  api_key=os.environ['OPENAI_API_KEY'],
+)
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
@@ -15,17 +20,32 @@ def chat():
         data = request.get_json()
         message = data.get('message')
 
-        response = openai.Completion.create(
+        messagedict = {
+            "role": "user",
+            "content": message
+        }
+        print(type (messagedict))
+
+        if not message:
+            raise ValueError('Message cannot be empty')
+
+        system_message = {
+            "role": "system",
+            "content": "You are a language tutor who helps users learn languages. Based on the user's language goal and current skill level, you will create a lesson which will have a list of vocab, grammar and phrases to learn. The user will then practice these and you will provide feedback. You will also answer any questions the user has about the language."
+        }
+
+        response = client.chat.completions.create(
             model="gpt-3.5-turbo",
-            prompt=message,
-            max_tokens=10
+            messages=[system_message, messagedict],
+            max_tokens=100,
         )
 
-        response_text = response.choices[0].text.strip()
-
+        response_text = response.choices[0].message.content
+        print("restext", response_text)
         return jsonify({'message': response_text})
 
     except Exception as e:
+        print(f"Error: {e}")
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':

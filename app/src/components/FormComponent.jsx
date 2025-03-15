@@ -10,7 +10,7 @@ const FormComponent = ({onSendMessage}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('message to be prompted', message);
+    console.log('message to be sent', message);
     
 
     onSendMessage(message);
