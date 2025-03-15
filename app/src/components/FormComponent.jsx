@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button } from '@mui/material';
 
-const FormComponent = () => {
+const FormComponent = ({onSendMessage}) => {
   const [message, setMessage] = useState('');
 
   const handleInputChange = (event) => {
@@ -10,8 +10,10 @@ const FormComponent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    console.log('message to be prompted', message);
+    
 
-    // send prompt to chatGPTAI
+    onSendMessage(message);
   };
 
   return (

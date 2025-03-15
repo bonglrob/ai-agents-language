@@ -1,10 +1,14 @@
 import React from "react";
 import Typography from '@mui/material/Typography';
 
-function DisplayOutput() {
+function DisplayOutput({response}) {
+
+  console.log("response in output:", response);
+  
+
   return (
     <Typography variant="body1">
-      ChatGPT Output goes here.
+      {response}
     </Typography>
   );
 }
