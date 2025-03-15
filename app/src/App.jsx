@@ -4,7 +4,6 @@ import './App.css'
 import { Typography } from "@mui/material"
 import DisplayOutput from "./components/DisplayOutput"
 import FormComponent from "./components/FormComponent"
-import DisplayLesson from "./components/DisplayLesson"
 
 function App() {
   const [response, setResponse] = useState('');
