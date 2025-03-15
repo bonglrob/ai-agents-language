@@ -19,7 +19,7 @@ const FormComponent = ({onSendMessage}) => {
   return (
     <div style={{ padding: '20px' }}>
       <TextField
-        label="Enter something"
+        label="E.g. I am a beginner and need to learn Chinese for my engineering job"
         variant="outlined"
         value={message}
         onChange={handleInputChange}

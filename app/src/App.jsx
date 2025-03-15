@@ -4,6 +4,7 @@ import './App.css'
 import { Typography } from "@mui/material"
 import DisplayOutput from "./components/DisplayOutput"
 import FormComponent from "./components/FormComponent"
+import DisplayLesson from "./components/DisplayLesson"
 
 function App() {
   const [response, setResponse] = useState('');
@@ -28,7 +29,9 @@ function App() {
   return (
     <>
       <Typography variant="h3">Learn a language for business </Typography>
+      <img src="/talk.png" alt="language" />
       <Typography variant="body1">What are your language goals, current skill level and context you want to learn?</Typography>
+      {/* <DisplayLesson response={response} /> */}
       <DisplayOutput response={response} />
       <FormComponent onSendMessage={handleSendMessage} />
     </>
